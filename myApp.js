@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
 console.log("Hello World");
 
@@ -7,17 +8,25 @@ console.log("Hello World");
 //   res.send('Hello Express');
 // })
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+// app.use(bodyParser.json())
+
 app.use((req, res, next) => {
   console.log(req.method, req.path, ' - ', req.ip);
   next();
 })
+
+app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
   const fullpath = __dirname + '/views/index.html';
   res.sendFile(fullpath);
 })
 
-app.use('/public', express.static(__dirname + '/public'));
+
 
 app.get('/json', (req, res) => {
   const message = 'Hello json';
