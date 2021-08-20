@@ -8,10 +8,11 @@ console.log("Hello World");
 // })
 
 app.get('/', (req, res) => {
-  const fullpath = __dirname + '/views/index.html'
-  res.sendFile(fullpath)
+  const fullpath = __dirname + '/views/index.html';
+  res.sendFile(fullpath);
 })
 
+app.use('/public', express.static(__dirname + '/public'));
 
 
 
