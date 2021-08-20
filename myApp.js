@@ -59,7 +59,7 @@ app.route('/name')
    })
    .post((req, res) => {
      res.json({
-       name: req.query.first + ' ' + req.query.last
+       name: req.body.first + ' ' + req.body.last
      })
    })
    
